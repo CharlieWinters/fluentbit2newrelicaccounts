@@ -17,15 +17,19 @@ Apply the logging yamls
 `kubectl apply -f .`
 
 To run an annotated pod, use the command below:
+
 `kubectl run -i --tty --rm busyboxannotated --image=busybox --restart=Never   --overrides='{ "apiVersion": "v1", "metadata": {"annotations": { "newrelic.com/secure":"true" } } }'   -- sh`
 
 Use the command below, to generate some stout and therefore logs for the secure pod:
+
 `echo I'm secure pod`
 
 To run another pod, open a seperate terminal and use the command below:
+
 `kubectl run -i --tty --rm busybox --image=busybox --restart=Never -- sh`
 
 Use the command below, to generate some stout and therefore logs for the pod:
+
 `echo I'm an insecure pod`
 
 In New Relic, you should see the annotated pod logs going to the account defined with the `SECURE_LICENSE_KEY` and the other pods logs going to the account defined with the `LICENSE_KEY`.
