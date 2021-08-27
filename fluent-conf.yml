@@ -20,7 +20,8 @@ data:
 
     @INCLUDE input-kubernetes.conf
     @INCLUDE output-newrelic.conf
-    @INCLUDE output-newrelic-secure.conf
+    @INCLUDE output-newrelic-account_name_1.conf
+    @INCLUDE output-newrelic-account_name_2.conf
     @INCLUDE filter-kubernetes.conf
     @INCLUDE filter-rewrite-tag.conf
 
@@ -53,7 +54,7 @@ data:
     [FILTER]
         Name          rewrite_tag
         Match         kube.*
-        Rule          $kubernetes['annotations']['newrelic.com/secure'] ^(true)$  secure.$TAG false
+        Rule          $kubernetes['annotations']['newrelic.com/account_name'] ^(.+)$  $1.$TAG false
 
   output-newrelic.conf: |
     [OUTPUT]
@@ -62,11 +63,18 @@ data:
         licenseKey ${LICENSE_KEY}
         endpoint ${ENDPOINT}
 
-  output-newrelic-secure.conf: |
+  output-newrelic-account_name_1.conf: |
     [OUTPUT]
         Name  newrelic
-        Match secure.*
-        licenseKey ${SECURE_LICENSE_KEY}
+        Match account_name_1.*
+        licenseKey ${ACCOUNT_NAME_1_LICENSE_KEY}
+        endpoint ${ENDPOINT}
+
+  output-newrelic-account_name_2.conf: |
+    [OUTPUT]
+        Name  newrelic
+        Match account_name_2.*
+        licenseKey ${ACCOUNT_NAME_2_LICENSE_KEY}
         endpoint ${ENDPOINT}
 
   parsers.conf: |

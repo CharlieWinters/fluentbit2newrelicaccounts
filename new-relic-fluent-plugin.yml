@@ -31,9 +31,11 @@ spec:
             - name: SOURCE
               value: "kubernetes"
             - name: LICENSE_KEY
-              value: "<YOUR LICENSE KEY HERE>"
-            - name: SECURE_LICENSE_KEY
-              value: "<YOUR SECURE LICENSE KEY HERE>"
+              value: "<YOUR_DEFAULT_LICENSE_KEY>"
+            - name: ACCOUNT_NAME_1_LICENSE_KEY
+              value: "<YOUR_ACCOUNT_1_LICENSE_KEY>"
+            - name: ACCOUNT_NAME_2_LICENSE_KEY
+              value: "<YOUR_ACCOUNT_2_LICENSE_KEY>"
             - name: CLUSTER_NAME
               value: testfluentbitcluster
             - name: LOG_LEVEL
